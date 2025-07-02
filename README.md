@@ -13,7 +13,7 @@ class Vector3D {
 ```
 и трёхмерного отрезка, заданного двумя Vector3D:
 
-```
+```cpp
 class Segment3D {
     Vector3D start;
     Vector3D end;
