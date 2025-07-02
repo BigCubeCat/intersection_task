@@ -3,6 +3,7 @@
 <details>
   <summary>Задача</summary>
 Есть класс трёхмерного вектора:
+
 ```cpp
 class Vector3D {
     double X;
@@ -11,6 +12,7 @@ class Vector3D {
 };
 ```
 и трёхмерного отрезка, заданного двумя Vector3D:
+
 ```
 class Segment3D {
     Vector3D start;
