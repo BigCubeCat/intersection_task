@@ -16,5 +16,9 @@ target_include_directories(vector_lib PUBLIC
         $<INSTALL_INTERFACE:include>
 )
 
-enable_testing()
-add_subdirectory(test)
+option(USE_TESTS "enable tests" OFF)
+
+if (USE_TESTS)
+    enable_testing()
+    add_subdirectory(test)
+endif()
