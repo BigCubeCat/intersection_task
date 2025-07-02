@@ -183,3 +183,11 @@ TEST(Segment3DIntersect, NoIntersection) {
     const auto res = s1.Intersect(s2);
     EXPECT_FALSE(res.has_value());
 }
+
+TEST(Segment3DIntersect, Function) {
+    const auto a = Segment3D({1, 1, 1}, {0, 0, 0});
+    const auto b = Segment3D({0, 0, 1}, {1, 1, 0});
+    const auto c1 = a.Intersect(b).value();
+    const auto c2 = Intersect(a, b).value();
+    EXPECT_EQ(c1, c2);
+}

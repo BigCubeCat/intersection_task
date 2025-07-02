@@ -43,4 +43,14 @@ public:
     [[nodiscard]] bool has_point(const Vector3D &point) const;
 };
 
+/*!
+ * \details Не был уверен в каком формате должна поставляться фича: как член класса или как отдельный метод.
+ * @param a Первый отрезок
+ * @param b Второй отрезок
+ * @return Точку пересечения
+ */
+inline std::optional<Vector3D> Intersect(const Segment3D &a, const Segment3D &b) {
+    return a.Intersect(b);
+}
+
 #endif //SEGMENT3D_HPP
