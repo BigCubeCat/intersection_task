@@ -171,9 +171,15 @@ TEST(Segment3DIntersect, EndIsStart) {
  */
 TEST(Segment3DIntersect, EpsilonTest) {
     const auto e = (1.0 / 3.0) - 0.3333333;
-    std::cout << e << std::endl;
     const Segment3D s1({1, 1, 1}, {2, 2, 2});
     const Segment3D s2({1 + e, 1 + e, 1 + e}, {2 - e, 2 - e, 2 - e});
+    const auto res = s1.Intersect(s2);
+    EXPECT_FALSE(res.has_value());
+}
+
+TEST(Segment3DIntersect, NoIntersection) {
+    const Segment3D s1({0, 0, 0}, {1.0 / 3.0, 0, 0});
+    const Segment3D s2({2.0 / 3.0, 1, 0}, {2.0 / 3.0, -1, 0});
     const auto res = s1.Intersect(s2);
     EXPECT_FALSE(res.has_value());
 }

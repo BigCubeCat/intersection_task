@@ -25,13 +25,21 @@ public:
 
     /*!
      * \brief Точка пересечения двух отрезков
+     * \todo Уточнить в требованиях случай полного и частичного наложения отрезков.
      * @param other Отрезок, точку пересечения с которым ищем
      * @return Точку пересечения. Если не пересекаются - std::nullopt
      */
     [[nodiscard]] std::optional<Vector3D> Intersect(const Segment3D &other) const;
 
+    /*!
+     * @return true, если вектор вырожден
+     */
     [[nodiscard]] bool is_zero() const;
 
+    /*!
+     * @param point Точка для проверки
+     * @return true, если point лежит на отрезке
+     */
     [[nodiscard]] bool has_point(const Vector3D &point) const;
 };
 

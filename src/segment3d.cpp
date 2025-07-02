@@ -1,7 +1,5 @@
 #include "segment3d.hpp"
 
-#include <cmath>
-
 #include "utils.hpp"
 
 Segment3D::Segment3D(const Vector3D &start, const Vector3D &end) : start(start), end(end) {
@@ -22,7 +20,7 @@ std::optional<Vector3D> Segment3D::Intersect(const Segment3D &other) const {
         if (has_point(other.start)) {
             return other.start;
         }
-        return  std::nullopt;
+        return std::nullopt;
     }
     if (self_zero) {
         // Если только один вырожден
@@ -41,8 +39,8 @@ std::optional<Vector3D> Segment3D::Intersect(const Segment3D &other) const {
 
     const auto D = self_sq_len * other_sq_len - dot_btw * dot_btw;
 
-    if (std::abs(D) < vector_utils::EPSILON) {
-        // параллельные прямые или совпадают
+    if (vector_utils::equal_scalars(D, 0.0)) {
+        // параллельные прямые
         if (has_point(other.start)) {
             return other.start;
         }
@@ -60,7 +58,8 @@ std::optional<Vector3D> Segment3D::Intersect(const Segment3D &other) const {
     if (0 <= t && t <= 1 && 0 <= u && u <= 1) {
         const auto self_coord = start + (self_vec * t);
         const auto other_coord = other.start + (other_vec * u);
-        if (const auto difference = self_coord - other_coord; difference.norm_squared() < vector_utils::EPSILON) {
+        const auto difference = self_coord - other_coord;
+        if (vector_utils::equal_scalars(difference.norm_squared(), 0.0)) {
             // есть пересечение
             return self_coord;
         }
